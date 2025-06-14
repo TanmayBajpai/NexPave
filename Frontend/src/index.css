@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-50: #e6f1f9;
+  --primary-100: #cce3f3;
+  --primary-200: #99c7e7;
+  --primary-300: #66abdb;
+  --primary-400: #338fcf;
+  --primary-500: #0B3954;
+  --primary-600: #092e43;
+  --primary-700: #072232;
+  --primary-800: #041722;
+  --primary-900: #020b11;
+
+  --accent-50: #fff2e6;
+  --accent-100: #ffe5cc;
+  --accent-200: #ffcb99;
+  --accent-300: #ffb166;
+  --accent-400: #ff9833;
+  --accent-500: #FF6700;
+  --accent-600: #cc5200;
+  --accent-700: #993e00;
+  --accent-800: #662900;
+  --accent-900: #331400;
+
+  --teal-50: #e6f5f5;
+  --teal-100: #ccebeb;
+  --teal-200: #99d7d7;
+  --teal-300: #66c3c3;
+  --teal-400: #33afaf;
+  --teal-500: #38A3A5;
+  --teal-600: #2d8284;
+  --teal-700: #226263;
+  --teal-800: #164142;
+  --teal-900: #0b2021;
+
+  --success-50: #edfaf4;
+  --success-100: #dbf5e9;
+  --success-200: #b7ebd3;
+  --success-300: #93e1bd;
+  --success-400: #6fd7a7;
+  --success-500: #57CC99;
+  --success-600: #46a37a;
+  --success-700: #347a5c;
+  --success-800: #23523d;
+  --success-900: #11291f;
+
+  --warning-50: #fff9e6;
+  --warning-100: #fff3cc;
+  --warning-200: #ffe799;
+  --warning-300: #ffdb66;
+  --warning-400: #ffcf33;
+  --warning-500: #FFCA3A;
+  --warning-600: #cca22e;
+  --warning-700: #997923;
+  --warning-800: #665117;
+  --warning-900: #33280c;
+
+  --error-50: #ffeeef;
+  --error-100: #ffdcdf;
+  --error-200: #ffb9bf;
+  --error-300: #ff969f;
+  --error-400: #ff737f;
+  --error-500: #FF595E;
+  --error-600: #cc474b;
+  --error-700: #993538;
+  --error-800: #662426;
+  --error-900: #331213;
+
+  --neutral-50: #f8f9fa;
+  --neutral-100: #e9ecef;
+  --neutral-200: #dee2e6;
+  --neutral-300: #ced4da;
+  --neutral-400: #adb5bd;
+  --neutral-500: #6c757d;
+  --neutral-600: #495057;
+  --neutral-700: #343a40;
+  --neutral-800: #212529;
+  --neutral-900: #0a0908;
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-800 dark:bg-neutral-900 dark:text-neutral-100;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold leading-tight;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500;
+  }
+
+  .btn-accent {
+    @apply bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-50 focus:ring-primary-500;
+  }
+
+  .card {
+    @apply bg-white dark:bg-neutral-800 rounded-xl shadow-md overflow-hidden transition-all duration-300;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  }
+
+  .badge {
+    @apply px-2 py-1 text-xs font-semibold rounded-full;
+  }
+
+  .badge-severe {
+    @apply bg-error-100 text-error-700;
+  }
+
+  .badge-moderate {
+    @apply bg-warning-100 text-warning-700;
+  }
+
+  .badge-minor {
+    @apply bg-success-100 text-success-700;
+  }
+
+  .nav-link {
+    @apply px-4 py-2 text-neutral-600 dark:text-neutral-300 hover:text-primary-500 dark:hover:text-primary-400 font-medium transition-all duration-200;
+  }
+
+  .nav-link-active {
+    @apply text-primary-500 dark:text-primary-400 font-semibold;
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.bounce {
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}

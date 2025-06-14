@@ -1,0 +1,14 @@
+# Ignore the entire Database folder
+Database/
+
+# Ignore the .idea folder inside Backend
+Backend/.idea/
+
+# Ignore the application.properties file inside resources
+Backend/src/main/resources/application.properties
+
+# Ignore the run.sh script inside FastAPI
+FastAPI/run.sh
+
+# Ignore the Python virtual environment inside FastAPI
+FastAPI/venv/
