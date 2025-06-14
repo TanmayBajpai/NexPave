@@ -65,10 +65,10 @@ NexPave offers a decentralized, ML-driven system where users can report potholes
 
 ```
 nexpave/
-├── frontend/             # React.js frontend
-├── backend/              # Spring Boot backend
-├── FastAPI/              # YOLOv8 ML model via FastAPI
-├── README.md
+   ├── frontend/             # React.js frontend
+   ├── backend/              # Spring Boot backend
+   ├── FastAPI/              # YOLOv8 ML model via FastAPI
+   ├── README.md
 ```
 
 
