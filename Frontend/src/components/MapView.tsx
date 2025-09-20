@@ -1,11 +1,9 @@
-// MapView.tsx
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon, IconOptions } from 'leaflet';
 import { AlertTriangle, AlertCircle, AlertOctagon } from 'lucide-react';
 
-// Fix default marker icon paths in react-leaflet
 delete (Icon.Default.prototype as any)._getIconUrl;
 Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -13,7 +11,6 @@ Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-// Utility to create colored marker icons
 const createCustomIcon = (color: string): Icon => {
   const options: IconOptions = {
     iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`,
@@ -47,11 +44,11 @@ interface MapViewProps {
 }
 
 const MapView: React.FC<MapViewProps> = ({
-                                           markers,
-                                           center = [20.5937, 78.9629], // Center of India
-                                           zoom = 5,
-                                           onMarkerClick,
-                                         }) => {
+  markers,
+  center = [20.5937, 78.9629], // Center of India
+  zoom = 5,
+  onMarkerClick,
+}) => {
   const getSeverityIcon = (severity: PotholeMarker['severity']) => {
     switch (severity) {
       case 'high':
@@ -68,20 +65,20 @@ const MapView: React.FC<MapViewProps> = ({
     switch (severity) {
       case 'high':
         return (
-            <span className="badge badge-severe flex items-center">
+          <span className="badge badge-severe flex items-center">
             <AlertOctagon size={12} className="mr-1" /> Severe
           </span>
         );
       case 'medium':
         return (
-            <span className="badge badge-moderate flex items-center">
+          <span className="badge badge-moderate flex items-center">
             <AlertTriangle size={12} className="mr-1" /> Moderate
           </span>
         );
       case 'low':
       default:
         return (
-            <span className="badge badge-minor flex items-center">
+          <span className="badge badge-minor flex items-center">
             <AlertCircle size={12} className="mr-1" /> Minor
           </span>
         );
@@ -104,45 +101,45 @@ const MapView: React.FC<MapViewProps> = ({
   };
 
   return (
-      <MapContainer
-          center={center}
-          zoom={zoom}
-          style={{ height: '100%', width: '100%', borderRadius: '0.75rem' }}
-      >
-        <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+    <MapContainer
+      center={center}
+      zoom={zoom}
+      style={{ height: '100%', width: '100%', borderRadius: '0.75rem' }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
 
-        {markers.map(marker => (
-            <Marker
-                key={marker.id}
-                position={marker.position}
-                icon={getSeverityIcon(marker.severity)}
-                eventHandlers={{ click: () => onMarkerClick?.(marker.id) }}
-            >
-              <Popup>
-                <div className="p-1">
-                  <div className="flex justify-between items-center mb-2">
-                    {getSeverityBadge(marker.severity)}
-                    {getStatusBadge(marker.status)}
-                  </div>
-                  <p className="text-sm mb-1">Reported: {marker.reportDate}</p>
-                  <p className="text-sm font-semibold">Bounty: ₹{marker.bounty.toFixed(2)}</p>
-                  <button
-                      className="mt-3 text-xs font-medium text-primary-600 hover:text-primary-800"
-                      onClick={() => onMarkerClick?.(marker.id)}
-                  >
-                    View Details
-                  </button>
-                </div>
-              </Popup>
-            </Marker>
-        ))}
-      </MapContainer>
+      {markers.map(marker => (
+        <Marker
+          key={marker.id}
+          position={marker.position}
+          icon={getSeverityIcon(marker.severity)}
+          eventHandlers={{ click: () => onMarkerClick?.(marker.id) }}
+        >
+          <Popup>
+            <div className="p-1">
+              <div className="flex justify-between items-center mb-2">
+                {getSeverityBadge(marker.severity)}
+                {getStatusBadge(marker.status)}
+              </div>
+              <p className="text-sm mb-1">Reported: {marker.reportDate}</p>
+              <p className="text-sm font-semibold">Bounty: ₹{marker.bounty.toFixed(2)}</p>
+              <button
+                className="mt-3 text-xs font-medium text-primary-600 hover:text-primary-800"
+                onClick={() => onMarkerClick?.(marker.id)}
+              >
+                View Details
+              </button>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+    </MapContainer>
   );
 };
 
 export default MapView;
 
-  
+

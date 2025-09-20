@@ -9,28 +9,25 @@ import cv2
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",  # ✅ Must match your frontend's origin exactly
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # ✅ Matches exactly with frontend
-    allow_credentials=True,                  # ✅ Required for cookies/auth
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,                
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
-# Load trained YOLO model
 model = YOLO("app/best.pt")
 
 
-# Process and detect potholes
 def get_labels(image_path, conf=0.05):
-    # Resize to ensure model consistency
     img = cv2.imread(image_path)
     if img is None:
-        print("❌ Failed to read image for resizing")
+        print("Failed to read image for resizing")
         return []
 
     resized = cv2.resize(img, (640, 640))
@@ -40,9 +37,9 @@ def get_labels(image_path, conf=0.05):
 
     print(f"➡️ YOLO processed {image_path}")
     if results.boxes:
-        print(f"✅ Found {len(results.boxes)} boxes")
+        print(f"Found {len(results.boxes)} boxes")
     else:
-        print("❌ No boxes found")
+        print("No boxes found")
 
     return [model.names[int(box.cls[0])] for box in results.boxes]
 
@@ -85,7 +82,6 @@ async def verify_repair(before: UploadFile = File(...), after: UploadFile = File
     with open(after_path, "wb") as af:
         af.write(await after.read())
 
-    # Detect with very low confidence to catch faint potholes
     before_labels = get_labels(before_path, conf=0.05)
     after_labels = get_labels(after_path, conf=0.05)
 
@@ -95,7 +91,6 @@ async def verify_repair(before: UploadFile = File(...), after: UploadFile = File
     os.remove(before_path)
     os.remove(after_path)
 
-    # Compare count instead of exact classes
     repaired = len(before_labels) > 0 and len(after_labels) < len(before_labels)
 
     return {"repaired": repaired}

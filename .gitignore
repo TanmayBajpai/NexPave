@@ -12,3 +12,5 @@ FastAPI/run.sh
 
 # Ignore the Python virtual environment inside FastAPI
 FastAPI/venv/
+
+FastAPI/bin

@@ -94,14 +94,14 @@ const PotholeCard: React.FC<PotholeCardProps> = ({
   };
 
   return (
-    <div 
+    <div
       className="card hover:shadow-lg group cursor-pointer transition-all duration-300 hover:-translate-y-1"
       onClick={onClick}
     >
       <div className="relative overflow-hidden h-48">
-        <img 
-          src={imageUrl} 
-          alt={`Pothole at ${location}`} 
+        <img
+          src={imageUrl}
+          alt={`Pothole at ${location}`}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute top-2 right-2">

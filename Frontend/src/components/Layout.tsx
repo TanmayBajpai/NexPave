@@ -27,24 +27,24 @@ const Layout: React.FC = () => {
                 <span className="ml-2 text-xl font-bold text-primary-500">NexPave</span>
               </Link>
             </div>
-            
+
             <nav className="hidden md:flex items-center space-x-1">
-              <NavLink to="/" className={({ isActive }) => 
+              <NavLink to="/" className={({ isActive }) =>
                 isActive ? "nav-link nav-link-active" : "nav-link"
               }>
                 Home
               </NavLink>
-              <NavLink to="/report" className={({ isActive }) => 
+              <NavLink to="/report" className={({ isActive }) =>
                 isActive ? "nav-link nav-link-active" : "nav-link"
               }>
                 Report
               </NavLink>
-              <NavLink to="/contractor" className={({ isActive }) => 
+              <NavLink to="/contractor" className={({ isActive }) =>
                 isActive ? "nav-link nav-link-active" : "nav-link"
               }>
                 Contractor
               </NavLink>
-              <NavLink to="/admin" className={({ isActive }) => 
+              <NavLink to="/admin" className={({ isActive }) =>
                 isActive ? "nav-link nav-link-active" : "nav-link"
               }>
                 Admin
@@ -57,7 +57,7 @@ const Layout: React.FC = () => {
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
             </nav>
-            
+
             <div className="md:hidden flex items-center">
               <button
                 onClick={toggleDarkMode}
@@ -66,7 +66,7 @@ const Layout: React.FC = () => {
               >
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
-              <button 
+              <button
                 onClick={toggleMenu}
                 className="p-2 rounded-md text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none"
                 aria-label="Toggle menu"
@@ -75,50 +75,49 @@ const Layout: React.FC = () => {
               </button>
             </div>
           </div>
-          
-          {/* Mobile menu */}
+
           {isMenuOpen && (
             <div className="md:hidden animate-fade-in">
               <div className="pt-2 pb-4 space-y-1">
-                <NavLink 
-                  to="/" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
                     `block px-4 py-2 rounded-md ${isActive ? 'bg-primary-50 dark:bg-primary-900 text-primary-600 dark:text-primary-400 font-semibold' : 'text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'}`
                   }
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Home
                 </NavLink>
-                <NavLink 
-                  to="/report" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/report"
+                  className={({ isActive }) =>
                     `block px-4 py-2 rounded-md ${isActive ? 'bg-primary-50 dark:bg-primary-900 text-primary-600 dark:text-primary-400 font-semibold' : 'text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'}`
                   }
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Report
                 </NavLink>
-                <NavLink 
-                  to="/dashboard" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
                     `block px-4 py-2 rounded-md ${isActive ? 'bg-primary-50 dark:bg-primary-900 text-primary-600 dark:text-primary-400 font-semibold' : 'text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'}`
                   }
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
                 </NavLink>
-                <NavLink 
-                  to="/contractor" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/contractor"
+                  className={({ isActive }) =>
                     `block px-4 py-2 rounded-md ${isActive ? 'bg-primary-50 dark:bg-primary-900 text-primary-600 dark:text-primary-400 font-semibold' : 'text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'}`
                   }
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contractor
                 </NavLink>
-                <NavLink 
-                  to="/admin" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) =>
                     `block px-4 py-2 rounded-md ${isActive ? 'bg-primary-50 dark:bg-primary-900 text-primary-600 dark:text-primary-400 font-semibold' : 'text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'}`
                   }
                   onClick={() => setIsMenuOpen(false)}
@@ -130,12 +129,12 @@ const Layout: React.FC = () => {
           )}
         </div>
       </header>
-      
+
       <main className="flex-grow">
         <Outlet />
       </main>
 
-      
+
       <footer className="bg-primary-800 text-white py-8">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

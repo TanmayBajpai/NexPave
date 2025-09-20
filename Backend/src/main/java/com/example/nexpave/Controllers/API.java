@@ -159,10 +159,8 @@ public class API {
         Contractor contractor = userOptional.get();
         String upiId = contractor.getUpiId();
 
-        // Construct UPI payment string
         String upiUri = "upi://pay?pa=" + upiId + "&pn=NexPave&am=" + amount + "&cu=INR";
 
-        // Use a public QR generator (e.g. QRServer)
         String qrImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" +
                 java.net.URLEncoder.encode(upiUri, java.nio.charset.StandardCharsets.UTF_8);
 

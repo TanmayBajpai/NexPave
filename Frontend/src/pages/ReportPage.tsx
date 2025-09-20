@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MapPin, Camera, Calendar, MessageSquare, Loader2, Check } from 'lucide-react';
 import ImageUpload from '../components/ImageUpload';
 import MapView, { PotholeMarker } from '../components/MapView';
-///
 
 const MOCK_MARKERS: PotholeMarker[] = [
     { id: '1', position: [19.076, 72.8777], severity: 'high', reportDate: '2023-08-15', status: 'verified', bounty: 2500 },
@@ -22,7 +21,6 @@ const ReportPage: React.FC = () => {
     const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
     const [isGettingLocation, setIsGettingLocation] = useState(false);
 
-    // New state for backend data
     const [severity, setSeverity] = useState<string | null>(null);
     const [estimatedSize, setEstimatedSize] = useState<string | null>(null);
     const [bounty, setBounty] = useState<number | null>(null);
@@ -57,7 +55,6 @@ const ReportPage: React.FC = () => {
                 const data = await response.json();
                 console.log("Server returned:", data);
 
-                // Update states with backend data
                 setSeverity(data.severity ?? 'IDK');
                 setEstimatedSize(data.size ?? 'Check');
                 setBounty(data.bounty ?? 6969);
@@ -120,125 +117,125 @@ const ReportPage: React.FC = () => {
 
     const renderStepContent = () => {
         switch (currentStep) {
-      case 'photo':
-        return (
-            <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold mb-6">Upload Pothole Photo</h2>
-              <div className="mb-6">
-                <ImageUpload onChange={handleImageChange} />
-              </div>
-              <p className="text-sm text-neutral-500 mb-6">
-                Please take a clear photo of the pothole. This helps our AI accurately assess the damage.
-              </p>
-              <div className="flex justify-end">
-                <button className="btn btn-primary" onClick={nextStep} disabled={!potholeImage}>
-                  Next
-                </button>
-              </div>
-            </div>
-        );
-      case 'location':
-        return (
-            <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold mb-6">Pothole Location</h2>
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                  Address
-                </label>
-                <div className="flex">
-                  <input
-                      type="text"
-                      value={location}
-                      onChange={e => setLocation(e.target.value)}
-                      placeholder="Street address of pothole"
-                      className="input flex-1"
-                  />
-                  <button
-                      type="button"
-                      className="ml-2 px-3 py-2 bg-primary-100 text-primary-700 rounded-lg hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-500 flex items-center justify-center"
-                      onClick={detectLocation}
-                      disabled={isGettingLocation}
-                  >
-                    {isGettingLocation ? <Loader2 size={20} className="animate-spin" /> : <MapPin size={20} />}
-                  </button>
-                </div>
-              </div>
-               <div className="mb-6 h-60">
-                {coordinates ? (
-                    <MapView
-                        markers={[
-                          ...MOCK_MARKERS,
-                          { id: 'new', position: coordinates, severity: 'medium', reportDate: new Date().toISOString().split('T')[0], status: 'reported', bounty: 0 },
-                        ]}
-                        center={coordinates}
-                        zoom={15}
-                    />
-                ) : (
-                    <div className="h-full flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 text-center">
-                        <MapPin size={48} className="mb-4 text-neutral-400" />
-                        <p className="text-neutral-500">Use the location button to detect your position</p>
+            case 'photo':
+                return (
+                    <div className="animate-fade-in">
+                        <h2 className="text-2xl font-bold mb-6">Upload Pothole Photo</h2>
+                        <div className="mb-6">
+                            <ImageUpload onChange={handleImageChange} />
+                        </div>
+                        <p className="text-sm text-neutral-500 mb-6">
+                            Please take a clear photo of the pothole. This helps our AI accurately assess the damage.
+                        </p>
+                        <div className="flex justify-end">
+                            <button className="btn btn-primary" onClick={nextStep} disabled={!potholeImage}>
+                                Next
+                            </button>
+                        </div>
                     </div>
-                )
-                }
-              </div>
-              <div className="flex justify-between">
-                <button className="btn btn-outline" onClick={previousStep}>
-                  Previous
-                </button>
-                <button className="btn btn-primary" onClick={nextStep} disabled={!location || !coordinates}>
-                  Next
-                </button>
-              </div>
-            </div>
-        );
-      case 'details':
-        return (
-            <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold mb-6">Additional Details</h2>
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-                    Provide a Description to Help Fix the Issue More Accurately (Optional
-                </label>
-                <textarea
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                    placeholder="Provide any additional details about the pothole..."
-                    className="input min-h-[120px]"
-                />
-              </div>
-              <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 mb-6">
-                <h3 className="text-lg font-semibold mb-4">Report Summary</h3>
-                <div className="space-y-3">
-                  <div className="flex">
-                    <Camera size={18} className="mr-2 text-neutral-500" />
-                    <span className="text-neutral-700 dark:text-neutral-300">Photo uploaded</span>
-                  </div>
-                  <div className="flex">
-                    <MapPin size={18} className="mr-2 text-neutral-500" />
-                    <span className="text-neutral-700 dark:text-neutral-300">{location}</span>
-                  </div>
-                  <div className="flex">
-                    <Calendar size={18} className="mr-2 text-neutral-500" />
-                    <span className="text-neutral-700 dark:text-neutral-300">{new Date().toLocaleDateString()}</span>
-                  </div>
-                  {description && (
-                      <div className="flex">
-                        <MessageSquare size={18} className="mr-2 text-neutral-500" />
-                        <span className="text-neutral-700 dark:text-neutral-300">{description}</span>
-                      </div>
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-between">
-                <button className="btn btn-outline" onClick={previousStep}>
-                  Previous
-                </button>
-                <button className="btn btn-primary" onClick={nextStep}>
-                  Submit Report
-                </button>
-              </div>
-            </div>
-        );
+                );
+            case 'location':
+                return (
+                    <div className="animate-fade-in">
+                        <h2 className="text-2xl font-bold mb-6">Pothole Location</h2>
+                        <div className="mb-6">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                                Address
+                            </label>
+                            <div className="flex">
+                                <input
+                                    type="text"
+                                    value={location}
+                                    onChange={e => setLocation(e.target.value)}
+                                    placeholder="Street address of pothole"
+                                    className="input flex-1"
+                                />
+                                <button
+                                    type="button"
+                                    className="ml-2 px-3 py-2 bg-primary-100 text-primary-700 rounded-lg hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-500 flex items-center justify-center"
+                                    onClick={detectLocation}
+                                    disabled={isGettingLocation}
+                                >
+                                    {isGettingLocation ? <Loader2 size={20} className="animate-spin" /> : <MapPin size={20} />}
+                                </button>
+                            </div>
+                        </div>
+                        <div className="mb-6 h-60">
+                            {coordinates ? (
+                                <MapView
+                                    markers={[
+                                        ...MOCK_MARKERS,
+                                        { id: 'new', position: coordinates, severity: 'medium', reportDate: new Date().toISOString().split('T')[0], status: 'reported', bounty: 0 },
+                                    ]}
+                                    center={coordinates}
+                                    zoom={15}
+                                />
+                            ) : (
+                                <div className="h-full flex flex-col items-center justify-center bg-neutral-100 dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 text-center">
+                                    <MapPin size={48} className="mb-4 text-neutral-400" />
+                                    <p className="text-neutral-500">Use the location button to detect your position</p>
+                                </div>
+                            )
+                            }
+                        </div>
+                        <div className="flex justify-between">
+                            <button className="btn btn-outline" onClick={previousStep}>
+                                Previous
+                            </button>
+                            <button className="btn btn-primary" onClick={nextStep} disabled={!location || !coordinates}>
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                );
+            case 'details':
+                return (
+                    <div className="animate-fade-in">
+                        <h2 className="text-2xl font-bold mb-6">Additional Details</h2>
+                        <div className="mb-6">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                                Provide a Description to Help Fix the Issue More Accurately (Optional
+                            </label>
+                            <textarea
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                                placeholder="Provide any additional details about the pothole..."
+                                className="input min-h-[120px]"
+                            />
+                        </div>
+                        <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 mb-6">
+                            <h3 className="text-lg font-semibold mb-4">Report Summary</h3>
+                            <div className="space-y-3">
+                                <div className="flex">
+                                    <Camera size={18} className="mr-2 text-neutral-500" />
+                                    <span className="text-neutral-700 dark:text-neutral-300">Photo uploaded</span>
+                                </div>
+                                <div className="flex">
+                                    <MapPin size={18} className="mr-2 text-neutral-500" />
+                                    <span className="text-neutral-700 dark:text-neutral-300">{location}</span>
+                                </div>
+                                <div className="flex">
+                                    <Calendar size={18} className="mr-2 text-neutral-500" />
+                                    <span className="text-neutral-700 dark:text-neutral-300">{new Date().toLocaleDateString()}</span>
+                                </div>
+                                {description && (
+                                    <div className="flex">
+                                        <MessageSquare size={18} className="mr-2 text-neutral-500" />
+                                        <span className="text-neutral-700 dark:text-neutral-300">{description}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="flex justify-between">
+                            <button className="btn btn-outline" onClick={previousStep}>
+                                Previous
+                            </button>
+                            <button className="btn btn-primary" onClick={nextStep}>
+                                Submit Report
+                            </button>
+                        </div>
+                    </div>
+                );
             case 'submitting':
                 return (
                     <div className="animate-fade-in py-10 text-center">
@@ -257,7 +254,7 @@ const ReportPage: React.FC = () => {
                     <div className="animate-fade-in py-10 text-center">
                         <div
                             className="w-16 h-16 rounded-full bg-success-100 flex items-center justify-center mx-auto mb-6">
-                            <Check size={32} className="text-success-600"/>
+                            <Check size={32} className="text-success-600" />
                         </div>
                         <h2 className="text-2xl font-bold mb-2">Report Submitted Successfully!</h2>
                         <p className="text-neutral-600 dark:text-neutral-400 mb-6">
@@ -270,7 +267,7 @@ const ReportPage: React.FC = () => {
                                     className={`badge text-white flex items-center justify-center`}
                                     style={{
                                         borderRadius: '10068px',
-                                        padding: '0.5rem 1.5rem',  // equal top/bottom padding for vertical centering
+                                        padding: '0.5rem 1.5rem',
                                         fontSize: '0.9rem',
                                         lineHeight: '1rem',
                                         fontWeight: 600,
@@ -283,8 +280,8 @@ const ReportPage: React.FC = () => {
                                         textAlign: 'center',
                                     }}
                                 >
-                            {severity ?? 'N/A'}
-                            </span>
+                                    {severity ?? 'N/A'}
+                                </span>
                             </div>
 
                             <div className="flex justify-between mb-4">
@@ -309,9 +306,9 @@ const ReportPage: React.FC = () => {
 
                         </div>
                         <Link to="//localhost:5173/">
-                        <button className="btn btn-primary" onClick={nextStep}>
-                            View Dashboard
-                        </button>
+                            <button className="btn btn-primary" onClick={nextStep}>
+                                View Dashboard
+                            </button>
                         </Link>
                     </div>
                 );
@@ -337,7 +334,6 @@ const ReportPage: React.FC = () => {
                         backdropFilter: 'saturate(180%) blur(12px)',
                     }}
                 >
-                    {/* Progress Indicators */}
                     {currentStep !== 'submitting' && currentStep !== 'success' && (
                         <div className="mb-8">
                             <div className="flex items-center justify-between">
@@ -346,7 +342,7 @@ const ReportPage: React.FC = () => {
                                     <div
                                         className={`w-8 h-8 rounded-full flex items-center justify-center mb-2 ${currentStep === 'photo' ? 'bg-primary-500 text-white' : currentStep === 'location' || currentStep === 'details' ? 'bg-success-500 text-white' : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-500'}`}>
                                         {currentStep === 'location' || currentStep === 'details' ?
-                                            <Check size={16}/> : 1}
+                                            <Check size={16} /> : 1}
                                     </div>
                                     <span className="text-xs font-medium">Photo</span>
                                 </div>
@@ -356,7 +352,7 @@ const ReportPage: React.FC = () => {
                                     className={`flex flex-col items-center ${currentStep === 'location' ? 'text-primary-500' : currentStep === 'photo' ? 'text-neutral-500' : 'text-success-500'}`}>
                                     <div
                                         className={`w-8 h-8 rounded-full flex items-center justify-center mb-2 ${currentStep === 'location' ? 'bg-primary-500 text-white' : currentStep === 'details' ? 'bg-success-500 text-white' : currentStep === 'photo' ? 'bg-neutral-200 dark:bg-neutral-700 text-neutral-500' : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-500'}`}>
-                                        {currentStep === 'details' ? <Check size={16}/> : 2}
+                                        {currentStep === 'details' ? <Check size={16} /> : 2}
                                     </div>
                                     <span className="text-xs font-medium">Location</span>
                                 </div>

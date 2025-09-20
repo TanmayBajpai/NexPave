@@ -16,7 +16,6 @@ public class GetTrafficService {
 
     public String getTraffic(String latitude, String longitude) {
         try {
-            // Parse latitude and longitude and add a small offset to simulate nearby destination
             double lat = Double.parseDouble(latitude);
             double lon = Double.parseDouble(longitude);
 

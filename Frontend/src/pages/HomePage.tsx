@@ -6,7 +6,6 @@ import roadimage from '../assets/road.png';
 const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary-700 to-primary-800 text-white py-20">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-30"></div>
@@ -24,7 +23,7 @@ const HomePage: React.FC = () => {
             <p className="text-lg md:text-xl mb-8 text-neutral-100 animate-slide-in">
               NexPave transforms everyday commuters into guardians of the street. Report potholes, earn rewards, and help make our roads safer for everyone.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 animate-slide-in" style={{animationDelay: '0.2s'}}>
+            <div className="flex flex-col sm:flex-row gap-4 animate-slide-in" style={{ animationDelay: '0.2s' }}>
               <Link to="/report" className="btn bg-accent-500 hover:bg-accent-600 text-white shadow-lg">
                 Report a Pothole
               </Link>
@@ -36,7 +35,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
       <section className="py-16 bg-white dark:bg-neutral-800">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -45,7 +43,7 @@ const HomePage: React.FC = () => {
               NexPave creates a community-driven approach to road maintenance, empowering citizens and contractors.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="card p-6 flex flex-col items-center text-center hover:shadow-lg">
               <div className="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mb-4">
@@ -56,7 +54,7 @@ const HomePage: React.FC = () => {
                 Use your phone to snap a photo of a pothole and submit its location. Our AI will assess the damage severity.
               </p>
             </div>
-            
+
             <div className="card p-6 flex flex-col items-center text-center hover:shadow-lg">
               <div className="w-16 h-16 rounded-full bg-accent-100 dark:bg-accent-900 flex items-center justify-center mb-4">
                 <MapPin className="text-accent-600 dark:text-accent-400" size={32} />
@@ -66,7 +64,7 @@ const HomePage: React.FC = () => {
                 Our machine learning model verifies the pothole, categorizes its severity, and assigns a bounty reward.
               </p>
             </div>
-            
+
             <div className="card p-6 flex flex-col items-center text-center hover:shadow-lg">
               <div className="w-16 h-16 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center mb-4">
                 <Award className="text-teal-600 dark:text-teal-400" size={32} />
@@ -76,7 +74,7 @@ const HomePage: React.FC = () => {
                 Licensed contractors view open tasks, claim the ones they want to fix, and perform the necessary repairs.
               </p>
             </div>
-            
+
             <div className="card p-6 flex flex-col items-center text-center hover:shadow-lg">
               <div className="w-16 h-16 rounded-full bg-success-100 dark:bg-success-900 flex items-center justify-center mb-4">
                 <CheckCircle2 className="text-success-600 dark:text-success-400" size={32} />
@@ -90,7 +88,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Statistics Section */}
       <section className="py-16 bg-neutral-100 dark:bg-neutral-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -114,7 +111,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-16 bg-accent-500 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Be Part of the Solution</h2>

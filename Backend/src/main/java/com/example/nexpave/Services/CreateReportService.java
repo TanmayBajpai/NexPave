@@ -47,7 +47,6 @@ public class CreateReportService {
         int bounty;
 
         try {
-            // Prepare the image as a resource
             Resource imageResource = new ByteArrayResource(reportRequest.getPotholeImage().getBytes()) {
                 @Override
                 public String getFilename() {
@@ -89,7 +88,6 @@ public class CreateReportService {
             java.io.File imageFile = new java.io.File(filePath);
             reportRequest.getPotholeImage().transferTo(imageFile);
 
-            // ✅ Serve this image via static Spring path
             report.setImageUrl("http://localhost:8080/uploads/" + fileName);
 
         } catch (IOException e) {

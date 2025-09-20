@@ -28,7 +28,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange }) => {
       'image/*': ['.jpeg', '.jpg', '.png', '.webp']
     },
     maxFiles: 1,
-    maxSize: 5 * 1024 * 1024 // 5MB
+    maxSize: 5 * 1024 * 1024
   });
 
   const removeImage = () => {
@@ -39,7 +39,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange }) => {
   return (
     <div className="w-full">
       {!preview ? (
-        <div 
+        <div
           {...getRootProps()}
           className={`border-2 border-dashed rounded-lg p-6 transition-colors duration-200 flex flex-col items-center justify-center
             ${isDragActive ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30' : 'border-neutral-300 dark:border-neutral-700 hover:border-primary-400 dark:hover:border-primary-600'}`}
@@ -71,9 +71,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange }) => {
         </div>
       ) : (
         <div className="relative rounded-lg overflow-hidden">
-          <img 
-            src={preview} 
-            alt="Upload preview" 
+          <img
+            src={preview}
+            alt="Upload preview"
             className="w-full h-64 object-cover"
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
