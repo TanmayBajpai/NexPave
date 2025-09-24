@@ -157,8 +157,8 @@ export default function ContractorPortalPage() {
               <button
                 onClick={() => setTab("available")}
                 className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${tab === "available"
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  ? "bg-blue-600 text-white"
+                  : "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
                   }`}
               >
                 <Briefcase className="w-4 h-4 mr-2" />
@@ -167,8 +167,8 @@ export default function ContractorPortalPage() {
               <button
                 onClick={() => setTab("my-works")}
                 className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${tab === "my-works"
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
+                  ? "bg-blue-600 text-white"
+                  : "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"
                   }`}
               >
                 <CheckCircle className="w-4 h-4 mr-2" />
@@ -306,10 +306,10 @@ export default function ContractorPortalPage() {
                     )}
                     <div
                       className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium ${pothole.status === "completed"
-                          ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
-                          : pothole.status === "in_progress"
-                            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300"
-                            : "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+                        ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+                        : pothole.status === "in_progress"
+                          ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300"
+                          : "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
                         }`}
                     >
                       {pothole.status === "completed"
@@ -338,10 +338,10 @@ export default function ContractorPortalPage() {
                     <div className="flex items-center justify-between mt-4">
                       <div
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${pothole.severity === "high"
-                            ? "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"
-                            : pothole.severity === "medium"
-                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300"
-                              : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+                          ? "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"
+                          : pothole.severity === "medium"
+                            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300"
+                            : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
                           }`}
                       >
                         <AlertTriangle className="w-3 h-3 mr-1" />
@@ -460,5 +460,6 @@ export default function ContractorPortalPage() {
           </div>
         )}
       </div>
-      );
+    </div>
+  );
 }
