@@ -65,12 +65,11 @@ NexPave offers a decentralized, ML-driven system where users can report potholes
 
 ```
 nexpave/
-   ├── frontend/             # React.js frontend
-   ├── backend/              # Spring Boot backend
+   ├── Frontend/             # React.js frontend
+   ├── Backend/              # Spring Boot backend
    ├── FastAPI/              # YOLOv8 ML model via FastAPI
    ├── README.md
 ```
-
 
 
 ## 🚀 Getting Started
@@ -80,3 +79,19 @@ nexpave/
 - Java 17+
 - Python 3.9+
 - Ultralytics YOLOv8
+
+---
+
+## 📷 Screenshots
+
+### Dashboard
+<img width="1680" height="950" alt="Screenshot_20250920_205412" src="https://github.com/user-attachments/assets/10f8baa1-f919-49f3-afa9-9650a412f134" />
+
+
+### Pothole Reporting Process
+<img width="1680" height="886" alt="Screenshot_20250920_205501" src="https://github.com/user-attachments/assets/656a0b25-1945-4647-8b58-ea5009e55a59" />
+<img width="1681" height="950" alt="Screenshot_20250920_205439" src="https://github.com/user-attachments/assets/52f653bc-c645-41b2-a53a-f9e68ba62377" />
+<img width="1680" height="950" alt="Screenshot_20250920_205412" src="https://github.com/user-attachments/assets/f75d94c1-ee97-4553-beb7-d66dc87cb86b" />
+
+
+
